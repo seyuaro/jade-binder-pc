@@ -1,0 +1,288 @@
+:root {
+  color-scheme: light;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #594c46;
+  background: #f8f2ea;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 50% 20%, rgba(255, 255, 255, 0.95), transparent 55%),
+    #f8f2ea;
+}
+
+button {
+  font: inherit;
+}
+
+.page {
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
+  justify-items: center;
+  gap: 1rem;
+  padding: clamp(1.25rem, 4vh, 2.75rem) 1rem 1.5rem;
+}
+
+.page-heading {
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0;
+  color: #a38b73;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0.35rem 0 0;
+  color: #a96d7b;
+  font-size: clamp(1.65rem, 4vw, 2.3rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+.album {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  width: 100%;
+}
+
+.book-stage {
+  position: relative;
+  width: min(44vw, 440px);
+  height: min(61vw, 600px);
+  perspective: 1800px;
+  transition: width 900ms cubic-bezier(0.2, 0.72, 0.2, 1), height 900ms cubic-bezier(0.2, 0.72, 0.2, 1);
+}
+
+.book-stage.is-open {
+  width: min(92vw, 930px);
+  height: min(65.8vw, 658px);
+}
+
+.spread {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 3px;
+  background: #fffdf9;
+  box-shadow: 0 22px 48px rgba(104, 76, 63, 0.2);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.is-open .spread {
+  opacity: 1;
+}
+
+.spread-art {
+  position: absolute;
+  top: -8.36%;
+  left: -23.6%;
+  width: 147.2%;
+  height: 116.7%;
+  max-width: none;
+  object-fit: fill;
+  user-select: none;
+  pointer-events: none;
+}
+
+.cover-flap {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition:
+    left 900ms cubic-bezier(0.2, 0.72, 0.2, 1),
+    width 900ms cubic-bezier(0.2, 0.72, 0.2, 1),
+    transform 1050ms cubic-bezier(0.25, 0.78, 0.2, 1),
+    visibility 0s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cover-flap:hover {
+  filter: drop-shadow(0 10px 12px rgba(104, 76, 63, 0.18));
+}
+
+.cover-face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.cover-face-front {
+  transform: rotateY(0deg);
+}
+
+.cover-art {
+  position: absolute;
+  top: -8.36%;
+  left: -91.5%;
+  width: 283.4%;
+  height: 116.7%;
+  max-width: none;
+  object-fit: fill;
+  user-select: none;
+  pointer-events: none;
+}
+
+.left-hold {
+  position: absolute;
+  z-index: 2;
+  inset: 0 auto 0 0;
+  width: 50%;
+  overflow: hidden;
+}
+
+.left-hold img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.left-hold.is-holding-right {
+  right: 0;
+  left: auto;
+}
+
+.page-turn {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition: transform 900ms cubic-bezier(0.2, 0.72, 0.2, 1);
+}
+
+.page-turn.is-turning {
+  transform: rotateY(-180deg);
+}
+
+.page-turn.is-reversing {
+  right: 50%;
+  left: 0;
+  transform-origin: right center;
+}
+
+.page-turn.is-reversing.is-turning {
+  transform: rotateY(180deg);
+}
+
+.page-turn-face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  backface-visibility: hidden;
+}
+
+.page-turn-face img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.page-turn-back {
+  transform: rotateY(180deg);
+}
+
+.is-open .cover-flap {
+  left: 50%;
+  width: 50%;
+  transform: rotateY(-180deg);
+  visibility: hidden;
+  transition-delay: 0s, 0s, 0s, 1050ms;
+  pointer-events: none;
+}
+
+.is-closing .cover-flap {
+  transform: rotateY(0deg);
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.page-click-zones {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+}
+
+.page-click-zone {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.page-click-zone:hover {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), transparent 16%);
+}
+
+.page-click-previous {
+  left: 0;
+  cursor: w-resize;
+}
+
+.page-click-next {
+  right: 0;
+  cursor: e-resize;
+}
+
+@media (max-width: 600px) {
+  .page {
+    gap: 0.5rem;
+    padding-top: 1.25rem;
+    padding-bottom: 1rem;
+  }
+
+  .book-stage {
+    width: 46vw;
+    height: 65vw;
+  }
+
+  .book-stage.is-open {
+    width: 92vw;
+    height: 65.2vw;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

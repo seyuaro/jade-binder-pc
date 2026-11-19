@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f8f2ea">
+    <title>Jade Aubrey's Photocard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main class="page">
+      <header class="page-heading">
+        
+      </header>
+
+      <section class="album" aria-label="Interactive photocard album">
+        <div class="book-stage" id="bookStage">
+          <div class="spread" id="spread">
+            <img class="spread-art" id="spreadArt" src="Photocard/2.png" alt="The first scrapbook photo spread">
+            <div class="left-hold" id="leftHold" hidden aria-hidden="true">
+              <img alt="">
+            </div>
+            <div class="page-turn" id="pageTurn" hidden aria-hidden="true">
+              <div class="page-turn-face page-turn-front">
+                <img id="turnFront" alt="">
+              </div>
+              <div class="page-turn-face page-turn-back">
+                <img id="turnBack" alt="">
+              </div>
+            </div>
+            <div class="page-click-zones">
+              <button class="page-click-zone page-click-previous" type="button" aria-label="Previous page"></button>
+              <button class="page-click-zone page-click-next" type="button" aria-label="Next page"></button>
+            </div>
+          </div>
+
+          <button class="cover-flap" id="coverButton" type="button" aria-label="Open the photocard">
+            <span class="cover-face cover-face-front">
+              <img class="cover-art" src="Photocard/1.png" alt="">
+            </span>
+          </button>
+        </div>
+      </section>
+
+    </main>
+  </body>
+</html>
